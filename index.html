@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média Escolar</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 320px;
+            text-align: center;
+        }
+        h2 { color: #333; margin-bottom: 20px; }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        button {
+            width: 95%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #218838; }
+        .resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🎓 Calculadora de Média</h2>
+    <input type="number" id="nota1" placeholder="Nota do 1º Bimestre" step="0.1" min="0" max="10">
+    <input type="number" id="nota2" placeholder="Nota do 2º Bimestre" step="0.1" min="0" max="10">
+    <button onclick="calcularMedia()">Calcular Média</button>
+    <div id="resultado" class="resultado"></div>
+</div>
+
+<script>
+    function calcularMedia() {
+        const n1 = parseFloat(document.getElementById('nota1').value);
+        const n2 = parseFloat(document.getElementById('nota2').value);
+        const divResultado = document.getElementById('resultado');
+
+        if (isNaN(n1) || isNaN(n2)) {
+            divResultado.innerHTML = "<span style='color:red;'>Por favor, insira duas notas válidas.</span>";
+            return;
+        }
+
+        const media = (n1 + n2) / 2;
+        if (media >= 7.0) {
+            divResultado.innerHTML = `<span style='color:green;'>Média: ${media.toFixed(1)}<br>Status: Aprovado! 🎉</span>`;
+        } else {
+            divResultado.innerHTML = `<span style='color:orange;'>Média: ${media.toFixed(1)}<br>Status: Em Recuperação 📚</span>`;
+        }
+    }
+</script>
+
+</body>
+</html>
